@@ -1,0 +1,90 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.slot {
+  height: 60vh;
+  overflow: hidden;
+}
+#slot-screen {
+  position: relative;
+  overflow: hidden;
+  gap: 1em;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 1em;
+  margin-top: 15vh;
+}
+ul {
+  padding: 0 !important;
+  list-style: none;
+  margin-bottom: 0 !important;
+  justify-items: center;
+}
+ul li {
+  display: block;
+  width: 100%;
+  justify-items: center;
+  border-style: solid;
+}
+@keyframes spin {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+.reel img {
+  display: block;
+  height: 20vh;
+  max-width: 100%;
+}
+.stopBtn {
+  position: relative;
+  border-top: solid;
+}
+.stop-btn:hover {
+  transition: 100ms;
+  border-radius: 1em;
+  cursor: pointer;
+}
+.stop-btn:active {
+  background-color: rgba(166, 190, 190, 0.4);
+}
+#start-btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: rgba(166, 190, 190, 0.4);
+  color: rgb(42, 48, 48);
+  border-color: rgb(42, 48, 48);
+  border-style: solid;
+  border-radius: 1em;
+  font-weight: bold;
+}
+#start-btn:hover {
+  background-color: rgb(42, 48, 48);
+  color: rgba(222, 255, 255, 0.4);
+  border-color: rgba(222, 255, 255, 0.4);
+  transition: 100ms;
+}
+#start-btn:active {
+  background-color: brown;
+  color: rgb(0, 0, 0);
+  border-color: brown;
+  border-radius: 10em;
+  transition: 100ms;
+  outline: none;
+}
+@media (max-width: 599px) {
+  .slot {
+    height: 30vh;
+    overflow: hidden;
+    margin: auto;
+    background-color: white;
+  }
+  .reel img {
+    display: block;
+    height: 10vh;
+  }
+}
