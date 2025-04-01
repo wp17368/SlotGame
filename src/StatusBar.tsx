@@ -21,7 +21,7 @@ function StatusBar({
         startSpin: false,
       });
     } else {
-      alert("You have no more bonus spins o use, I am sorry :(");
+      alert("You are out of bonus spins, I am sorry :(");
     }
   }
   return (
