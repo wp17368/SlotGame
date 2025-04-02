@@ -13,6 +13,7 @@ interface ReelAnimation {
 function SlotMachine() {
   const { user, updateUser } = useUser();
   const { buttons, updateButtons } = useUser();
+  const { shop, updateShop } = useUser();
   const [dialogueMessage, setDialogueMessage] = useState<string>(
     `Hello, gambler :) Have a spin!`
   );
@@ -151,10 +152,7 @@ function SlotMachine() {
 
   return (
     <>
-      <StatusBar
-        setIsStartButtonDisabled={setIsStartButtonDisabled}
-        isStartButtonDisabled={isStartButtonDisabled}
-      ></StatusBar>
+      <StatusBar></StatusBar>
       <div className="container">
         <div className="row">
           <div className="col">

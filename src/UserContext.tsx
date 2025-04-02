@@ -11,11 +11,16 @@ interface Buttons {
   activateDraw: boolean;
   buyButton: boolean;
 }
+interface Shop {
+  isShopModalOpen: boolean;
+}
 interface UserContextType {
   user: User;
   updateUser: (updates: Partial<User>) => void;
   buttons: Buttons;
   updateButtons: (updates: Partial<Buttons>) => void;
+  shop: Shop;
+  updateShop: (updates: Partial<Shop>) => void;
 }
 const defaultUser: User = {
   name: "Guest",
@@ -29,12 +34,14 @@ const defaultButtons: Buttons = {
   activateDraw: true,
   buyButton: false,
 };
+const defaultShop: Shop = { isShopModalOpen: false };
 const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState(defaultUser);
   const [buttons, setButtons] = useState(defaultButtons);
+  const [shop, setShop] = useState(defaultShop);
 
   const updateUser = (updates: Partial<User>) => {
     setUser((prev) => ({ ...prev, ...updates }));
@@ -42,9 +49,13 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   const updateButtons = (updates: Partial<Buttons>) => {
     setButtons((prev) => ({ ...prev, ...updates }));
   };
-
+  const updateShop = (updates: Partial<Shop>) => {
+    setShop((prev) => ({ ...prev, ...updates }));
+  };
   return (
-    <UserContext.Provider value={{ user, updateUser, buttons, updateButtons }}>
+    <UserContext.Provider
+      value={{ user, updateUser, buttons, updateButtons, shop, updateShop }}
+    >
       {children}
     </UserContext.Provider>
   );
