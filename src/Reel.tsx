@@ -83,7 +83,7 @@ function Reel({
         <div className="col text-center">
           <button
             type="button"
-            className="btn btn-dark"
+            className="btn btn-stop"
             disabled={reelsStopButtonsDisabled[reelIndex]}
             onClick={stopReels}
           >

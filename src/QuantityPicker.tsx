@@ -44,7 +44,7 @@ const QuantityPicker: React.FC<QuantityPickerProps> = ({
       <div className="row">
         <div className="col">
           <label htmlFor={`quantity-${productType}`} className="form-label">
-            Quantity
+            <h6> Quantity</h6>
           </label>
           <div className="input-group">
             <button
