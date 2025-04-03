@@ -5,15 +5,34 @@ interface User {
   bonusSpins: number;
   bonusDraws: number;
 }
+const defaultUser: User = {
+  name: "Guest",
+  credits: 50,
+  bonusSpins: 3,
+  bonusDraws: 2,
+};
 interface Buttons {
   startSpin: boolean;
   activateSpin: boolean;
   activateDraw: boolean;
   buyButton: boolean;
 }
+const defaultButtons: Buttons = {
+  startSpin: false,
+  activateSpin: true,
+  activateDraw: true,
+  buyButton: false,
+};
 interface Shop {
   isShopModalOpen: boolean;
+  shoppingCart: { products: { spin: number; draw: number }; total: number };
+  pricing: { spin: number; draw: number };
 }
+const defaultShop: Shop = {
+  isShopModalOpen: false,
+  shoppingCart: { products: { spin: 0, draw: 0 }, total: 0 },
+  pricing: { spin: 50, draw: 20 },
+};
 interface UserContextType {
   user: User;
   updateUser: (updates: Partial<User>) => void;
@@ -22,19 +41,7 @@ interface UserContextType {
   shop: Shop;
   updateShop: (updates: Partial<Shop>) => void;
 }
-const defaultUser: User = {
-  name: "Guest",
-  credits: 50,
-  bonusSpins: 3,
-  bonusDraws: 2,
-};
-const defaultButtons: Buttons = {
-  startSpin: false,
-  activateSpin: true,
-  activateDraw: true,
-  buyButton: false,
-};
-const defaultShop: Shop = { isShopModalOpen: false };
+
 const UserContext = createContext<UserContextType | undefined>(undefined);
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

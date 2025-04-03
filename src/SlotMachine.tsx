@@ -153,29 +153,32 @@ function SlotMachine() {
   return (
     <>
       <StatusBar></StatusBar>
-      <div className="container">
+      <div className="container text-center">
         <div className="row">
           <div className="col">
             <p>{dialogueMessage}</p>
           </div>
         </div>
-        <div className="row" id="slot-screen">
-          {reels.map((reel, index) => (
-            <Reel
-              key={index}
-              reelIndex={index}
-              setDrawnNumbers={setDrawnNumbers}
-              setReelsStopButtonsDisabled={setReelsStopButtonsDisabled}
-              setIsStartButtonDisabled={setIsStartButtonDisabled}
-              reelsStopButtonsDisabled={reelsStopButtonsDisabled}
-              reelAnimation={reelAnimation}
-              setReelAnimation={setReelAnimation}
-              payLine={payLine}
-              isBonusWon={isBonusWon}
-              reelsNumbers={reelsNumbers}
-            />
-          ))}
+        <div className="d-flex justify-content-center text-center">
+          <div className="row" id="slot-screen">
+            {reels.map((reel, index) => (
+              <Reel
+                key={index}
+                reelIndex={index}
+                setDrawnNumbers={setDrawnNumbers}
+                setReelsStopButtonsDisabled={setReelsStopButtonsDisabled}
+                setIsStartButtonDisabled={setIsStartButtonDisabled}
+                reelsStopButtonsDisabled={reelsStopButtonsDisabled}
+                reelAnimation={reelAnimation}
+                setReelAnimation={setReelAnimation}
+                payLine={payLine}
+                isBonusWon={isBonusWon}
+                reelsNumbers={reelsNumbers}
+              />
+            ))}
+          </div>
         </div>
+
         <div className="row">
           <div className="col text-center">
             <button

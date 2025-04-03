@@ -22,7 +22,7 @@ input[type="number"] {
   border-style: solid;
   border-width: 5px;
   border-radius: 1em;
-  margin-top: 15vh;
+  width: 60vw;
 }
 ul {
   padding: 0 !important;
