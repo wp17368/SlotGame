@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import { useUser } from "./UserContext";
 import activateSpin from "./SlotMachine";
 import SlotMachine from "./SlotMachine";
-interface statusBarProps {
-  setIsStartButtonDisabled: React.Dispatch<React.SetStateAction<boolean>>;
-  isStartButtonDisabled: boolean;
-}
-function StatusBar({
-  setIsStartButtonDisabled,
-  isStartButtonDisabled,
-}: statusBarProps) {
+import ShopModal from "./ShopModal";
+function StatusBar() {
   const { user, updateUser } = useUser();
   const { buttons, updateButtons } = useUser();
+  const { shop, updateShop } = useUser();
   function activateSpin() {
     if (user.bonusSpins > 0) {
       updateUser({ bonusSpins: user.bonusSpins - 1 });
@@ -23,6 +18,9 @@ function StatusBar({
     } else {
       alert("You are out of bonus spins, I am sorry :(");
     }
+  }
+  function openShopModal() {
+    updateShop({ isShopModalOpen: true });
   }
   return (
     <div className="status-bar row">
@@ -47,7 +45,10 @@ function StatusBar({
         </div>
       ))}
       <div className="col">
-        <button disabled={buttons.buyButton}>Buy</button>
+        <button disabled={buttons.buyButton} onClick={openShopModal}>
+          Buy
+        </button>
+        <ShopModal></ShopModal>
       </div>
     </div>
   );

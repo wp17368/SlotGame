@@ -2,6 +2,15 @@
   padding: 0;
   margin: 0;
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Removes the buttons in WebKit browsers (Chrome, Safari) */
+  margin: 0; /* Removes the margin around the buttons */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Hides buttons in Firefox */
+}
 .slot {
   height: 60vh;
   overflow: hidden;
@@ -13,7 +22,7 @@
   border-style: solid;
   border-width: 5px;
   border-radius: 1em;
-  margin-top: 15vh;
+  width: 60vw;
 }
 ul {
   padding: 0 !important;
