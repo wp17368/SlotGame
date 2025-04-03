@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useUser } from "./UserContext";
+import { Products, useUser } from "./UserContext";
 import QuantityPicker from "./QuantityPicker";
 
 function ShopModal() {
   const { shop, updateShop } = useUser();
-
+  const { user, updateUser } = useUser();
   function onClose() {
     updateShop({ ...shop, isShopModalOpen: false });
   }
@@ -37,8 +37,26 @@ function ShopModal() {
   }
 
   function onCheckout() {
-    console.log("Checkout - total:", shop.shoppingCart.total);
-    console.log(shop);
+    const updatedProducts = Object.keys(user.products).reduce((acc, key) => {
+      const productKey = key as keyof Products;
+      acc[productKey] =
+        (user.products[productKey] || 0) +
+        (shop.shoppingCart.products[productKey] || 0);
+      return acc;
+    }, {} as Products);
+
+    updateUser({
+      products: updatedProducts,
+      credits: user.credits - shop.shoppingCart.total,
+    });
+
+    updateShop({
+      shoppingCart: {
+        ...shop.shoppingCart,
+        products: { spin: 0, draw: 0 },
+        total: 0,
+      },
+    });
   }
 
   if (!shop.isShopModalOpen) return null;
@@ -49,14 +67,17 @@ function ShopModal() {
         <div className="modal-content">
           <div className="modal-header justify-content-between">
             <h5 className="modal-title">Shop</h5>
-            <button type="button" className="close p-1" onClick={onClose}>
+            <button
+              type="button"
+              className="close btn close-btn p-1"
+              onClick={onClose}
+            >
               Close
             </button>
           </div>
-          <div className="modal-body text-center">
-            <div className="row">
-              {/* Bonus Spin */}
-              <div className="col">
+          <div className="modal-body text-center ">
+            <div className="row align-items-end">
+              <div className="col product-card">
                 <h4>Bonus spin</h4>
                 <p>Buy yourself another spin!</p>
                 <QuantityPicker
@@ -66,19 +87,16 @@ function ShopModal() {
                 />
               </div>
 
-              {/* Bonus Draw */}
-              <div className="col">
+              <div className="col product-card">
                 <h4>Bonus draw</h4>
                 <p>In case you only need to spin one reel to hit jackpot!</p>
                 <QuantityPicker
                   productType="draw"
-                  quantity={shop.shoppingCart.products.draw} // ✅ Fixed wrong prop
+                  quantity={shop.shoppingCart.products.draw}
                   onQuantityChange={handleQuantityChange}
                 />
               </div>
             </div>
-
-            {/* Total & Checkout */}
             <div className="row mt-5">
               <div className="col">
                 <h5>Total: {shop.shoppingCart.total} credits</h5>

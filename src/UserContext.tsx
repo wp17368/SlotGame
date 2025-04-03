@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useState } from "react";
+export interface Products {
+  [key: string]: number;
+}
 interface User {
   name: string;
   credits: number;
-  bonusSpins: number;
-  bonusDraws: number;
+  products: Products;
 }
 const defaultUser: User = {
   name: "Guest",
   credits: 50,
-  bonusSpins: 3,
-  bonusDraws: 2,
+  products: { spin: 3, draw: 2 },
 };
 interface Buttons {
   startSpin: boolean;
@@ -25,7 +26,7 @@ const defaultButtons: Buttons = {
 };
 interface Shop {
   isShopModalOpen: boolean;
-  shoppingCart: { products: { spin: number; draw: number }; total: number };
+  shoppingCart: { products: Products; total: number };
   pricing: { spin: number; draw: number };
 }
 const defaultShop: Shop = {

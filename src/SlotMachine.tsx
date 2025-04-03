@@ -95,7 +95,7 @@ function SlotMachine() {
       checkIfBonusWon(Croupier.isBonusWon(drawnNumbers));
       if (isBonusWon) {
         updateUser({
-          bonusSpins: user.bonusSpins + 1,
+          products: { ...user.products, spin: user.products.spin + 1 },
         });
         updateButtons({ activateDraw: false, activateSpin: false });
         setDialogueMessage(
@@ -113,7 +113,7 @@ function SlotMachine() {
     console.log("checking if jackpot");
     if (isJackPot) {
       updateUser({
-        credits: user.credits + 100,
+        credits: user.credits + 90,
       });
       updateButtons({ activateDraw: false, activateSpin: false });
       setDialogueMessage(
@@ -149,14 +149,28 @@ function SlotMachine() {
     setPayLine([]);
     checkIfBonusWon(false);
   }
-
+  function activateSpin() {
+    if (user.products.spin > 0) {
+      updateUser({
+        products: { ...user.products, spin: user.products.spin - 1 },
+      });
+      updateButtons({
+        activateDraw: true,
+        activateSpin: true,
+        startSpin: false,
+      });
+      setDialogueMessage("Bonus spin is active! Have another go :)");
+    } else {
+      alert("You are out of bonus spins, I am sorry :(");
+    }
+  }
   return (
     <>
-      <StatusBar></StatusBar>
-      <div className="container text-center">
+      <div className="container">
+        <StatusBar></StatusBar>
         <div className="row">
-          <div className="col">
-            <p>{dialogueMessage}</p>
+          <div className="col text-center">
+            <h4 className="dialogue-message">{dialogueMessage}</h4>
           </div>
         </div>
         <div className="d-flex justify-content-center text-center">
@@ -182,13 +196,19 @@ function SlotMachine() {
         <div className="row">
           <div className="col text-center">
             <button
-              className="mt-4"
+              className="btn btn-start"
               type="button"
-              id="start-btn"
               onClick={startNewGame}
               disabled={buttons.startSpin}
             >
               Start!
+            </button>
+            <button
+              className="btn btn-activate"
+              disabled={buttons.activateSpin}
+              onClick={activateSpin}
+            >
+              Activate bonus spin
             </button>
           </div>
         </div>

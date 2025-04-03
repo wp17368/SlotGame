@@ -2,6 +2,16 @@
   padding: 0;
   margin: 0;
 }
+body {
+  background-color: #aa6373 !important;
+}
+:root {
+  --primary-color: #aa6373;
+  --secondary-color: #6b4e71;
+  --accent-color: #19535f;
+  --background-color: #2e1e2f;
+  --text-color: #eacdc2;
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none; /* Removes the buttons in WebKit browsers (Chrome, Safari) */
@@ -11,9 +21,28 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield; /* Hides buttons in Firefox */
 }
+p {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--text-color);
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--text-color) !important;
+}
+button {
+  color: var(--text-color) !important;
+}
 .slot {
   height: 60vh;
   overflow: hidden;
+}
+.dialogue-message {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 }
 #slot-screen {
   position: relative;
@@ -49,9 +78,10 @@ ul li {
   height: 20vh;
   max-width: 100%;
 }
-.stopBtn {
+.btn-stop {
   position: relative;
   border-top: solid;
+  background-color: var(--accent-color) !important;
 }
 .stop-btn:hover {
   transition: 100ms;
@@ -61,29 +91,58 @@ ul li {
 .stop-btn:active {
   background-color: rgba(166, 190, 190, 0.4);
 }
-#start-btn {
+.btn-start {
   display: inline-block;
-  padding: 0.5em 1em;
-  background-color: rgba(166, 190, 190, 0.4);
-  color: rgb(42, 48, 48);
-  border-color: rgb(42, 48, 48);
-  border-style: solid;
-  border-radius: 1em;
-  font-weight: bold;
+  margin-top: 1em;
+  background-color: var(--accent-color) !important;
+  color: var(--text-color) !important;
+  border-color: rgb(42, 48, 48) !important;
+  border-style: solid !important;
+  border-radius: 1em !important;
+  font-weight: bold !important;
 }
-#start-btn:hover {
+.btn-start:hover {
   background-color: rgb(42, 48, 48);
-  color: rgba(222, 255, 255, 0.4);
+  color: var(--text-color);
   border-color: rgba(222, 255, 255, 0.4);
   transition: 100ms;
 }
-#start-btn:active {
+.btn-start:active {
   background-color: brown;
-  color: rgb(0, 0, 0);
+  color: var(--text-color);
   border-color: brown;
   border-radius: 10em;
   transition: 100ms;
   outline: none;
+}
+.btn-start:disabled {
+  display: none;
+}
+
+.status-bar {
+  width: 60vw;
+  background-color: var(--secondary-color) !important;
+}
+
+.btn-activate {
+  margin-top: 1em;
+  background-color: #f4e9e2 !important;
+}
+.btn-activate:disabled {
+  display: none !important;
+}
+.status-bar .buy-btn {
+  background-color: var(--accent-color) !important;
+}
+.modal .product-card {
+  padding: 1em;
+  margin: 0.2em;
+  border: 0.1em solid var(--text-color) !important;
+  border-radius: 0.4em;
+}
+.modal-content {
+  background-color: var(--secondary-color) !important;
+  border: 0.1em solid var(--accent-color) !important;
 }
 @media (max-width: 599px) {
   .slot {
