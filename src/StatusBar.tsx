@@ -29,11 +29,11 @@ function StatusBar() {
         ))}
         <div className="col">
           <button
-            className="btn buy-btn"
+            className="btn shop-btn"
             disabled={buttons.buyButton}
             onClick={openShopModal}
           >
-            Buy
+            Shop
           </button>
           <ShopModal></ShopModal>
         </div>
